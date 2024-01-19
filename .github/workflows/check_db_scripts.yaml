@@ -28,14 +28,18 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r ./.github/workflows/requirements.txt
- 
+  - name: Get Pull Request Number
+      id: pr
+      run: echo "::set-output name=pull_request_number::$(gh pr view --json number -q .number || echo "")"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Check PR
       env:
         REGION: US-EAST-1
         READ_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       shell: bash
       run: |
-        PR_NUMBER=$(echo "${{ github.ref }}" | awk -F/ '{print $3}')
-        echo "Pull Request Number: $PR_NUMBER"
+        echo "Pull Request Number:" ${{ steps.pr.outputs.pull_request_number }}
         CURRENT_BRANCH=${GITHUB_REF}
         echo "source_branch" $CURRENT_BRANCH
