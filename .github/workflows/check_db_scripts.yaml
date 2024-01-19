@@ -36,7 +36,7 @@ jobs:
       shell: bash
       run: |
         PR_REF=${{ github.event.number }}
-        echo "Pull Request Number: $PR_REF"
+        echo "Pull Request Number:" $PR_REF
         CURRENT_BRANCH=${GITHUB_REF}
         echo "source_branch" $CURRENT_BRANCH
 
