@@ -1,0 +1,44 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+ 
+name: PR Runner
+ 
+on:
+  push:
+    branches:
+      - '**'
+      - '!main'
+ 
+# Set workflow permissions for the generated GITHUB_TOKEN
+permissions: read-all
+ 
+jobs:
+  Version_Checks:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+ 
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+        cache: 'pip'
+ 
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r ./.github/workflows/requirements.txt
+ 
+    - name: Version Updated
+      env:
+        REGION: US-EAST-1
+        READ_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      shell: bash
+      run: |
+        PR_REF=${{ github.event.before }}
+        PR_NUMBER=$(echo $PR_REF | awk -F/ '{print $3}')
+        echo "Pull Request Number: $PR_NUMBER"
+        CURRENT_BRANCH=${GITHUB_REF}
+        echo "source_branch" $CURRENT_BRANCH
+
+ 
