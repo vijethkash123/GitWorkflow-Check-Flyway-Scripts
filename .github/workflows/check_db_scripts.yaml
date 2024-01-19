@@ -35,9 +35,8 @@ jobs:
         READ_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       shell: bash
       run: |
-        PR_REF=${{ github.event.before }}
-        PR_NUMBER=$(echo $PR_REF | awk -F/ '{print $3}')
-        echo "Pull Request Number: $PR_NUMBER"
+        PR_REF=${{ github.event.number }}
+        echo "Pull Request Number: $PR_REF"
         CURRENT_BRANCH=${GITHUB_REF}
         echo "source_branch" $CURRENT_BRANCH
 
