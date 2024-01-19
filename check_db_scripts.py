@@ -22,7 +22,7 @@ repo = 'GitWorkflowTest'
 branch = 'feature/add-DML-scripts'
 branch = quote(branch, safe='')
 PR_NUMBER = 1
-READ_TOKEN = "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"
+READ_TOKEN = "XXX"
 headers={"accept": "application/vnd.github.v3", "Authorization": f"token {READ_TOKEN}"}
 
 files_changed_url = f"https://api.github.com/repos/vijethkash123/GitWorkflowTest/pulls/{PR_NUMBER}/files"
