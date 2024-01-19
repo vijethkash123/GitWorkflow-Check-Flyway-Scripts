@@ -1,6 +1,6 @@
 name: Get PR Number on PUSH event
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   push:
@@ -16,9 +16,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: echo ${{ steps.pr.outputs.pull_request_number }}
-
-  pull-request:
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' }}
-    steps:
-      - run: echo ${{ github.event.number }}
