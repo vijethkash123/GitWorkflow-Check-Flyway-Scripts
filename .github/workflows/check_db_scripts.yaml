@@ -38,3 +38,10 @@ jobs:
         echo "Pull Request Number:" ${{ github.event.number }}
         CURRENT_BRANCH=${GITHUB_REF}
         echo "source_branch" $CURRENT_BRANCH
+
+      - name: Get Pull Request Number
+        id: pr
+        run: echo "pull_request_number=$(gh pr view --json number -q .number || echo "")" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: echo ${{ steps.pr.outputs.pull_request_number }}
