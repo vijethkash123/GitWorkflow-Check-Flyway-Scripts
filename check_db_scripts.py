@@ -8,7 +8,7 @@ import requests
 # Driver program to check above comparison function
 # from version_compare import check_version
 
-READ_TOKEN = "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"
+READ_TOKEN = "XXXX"
 # CURRENT_BRANCH = "feature/add-DML-scripts"
 # CURRENT_BRANCH = quote(CURRENT_BRANCH, safe='')
 
