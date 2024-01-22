@@ -40,33 +40,5 @@ jobs:
       env:
         READ_TOKEN: ${{ secrets.READ_TOKEN }}
   
-  EchoPR:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-    steps:
-      - name: Rerun Workflow on Pull request
-        run: |
-          git commit --allow-empty -m "IGNORE: Trigger GitHub actions"
-          git push
-
-#Uncomment and add this here
-# name: Get PR Number on PUSH event
-
-# on: [push]
-
-# jobs:
-#   push:
-#     runs-on: ubuntu-latest
-#     if: ${{ github.event_name == 'push' }}
-#     steps:
-#       - uses: actions/checkout@v2.3.4
-#         with:
-#           fetch-depth: 0
-#       - name: Get Pull Request Number
-#         id: pr
-#         run: echo "pull_request_number=$(gh pr view --json number -q .number || echo "")" >> $GITHUB_OUTPUT
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       - run: echo ${{ steps.pr.outputs.pull_request_number }}
 
 
