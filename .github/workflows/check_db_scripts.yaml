@@ -8,6 +8,10 @@ on:
     branches:
       - '**'
       - '!main'
+  pull_request:
+    types:
+      - opened
+      - synchronize
  
 permissions: read-all
  
@@ -40,9 +44,9 @@ jobs:
       env:
         READ_TOKEN: ${{ secrets.READ_TOKEN }}
   
-  EchoPR:
+  Rerun-WF:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    if: ${{ github.event_name == 'pull_request' }}
     steps:
       - name: Rerun Workflow on Pull request
         run: |
