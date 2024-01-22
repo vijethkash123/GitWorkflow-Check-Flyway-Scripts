@@ -2,15 +2,11 @@ import base64
 import json
 import os
 from sys import argv
-# from urllib.parse import quote
 import requests
 
-# Driver program to check above comparison function
-# from version_compare import check_version
 
 READ_TOKEN = "XXXX"
-# CURRENT_BRANCH = "feature/add-DML-scripts"
-# CURRENT_BRANCH = quote(CURRENT_BRANCH, safe='')
+
 
 versions_main = set()
 versions_local = set()
@@ -19,9 +15,9 @@ ENVs = ['common', 'ci', 'prod', 'qa']
 # Run only if there are db_scrit file changes in a branch
 owner = 'vijethkash123'
 repo = 'GitWorkflowTest'
-branch = 'feature/add-DML-scripts'
-branch = quote(branch, safe='')
-PR_NUMBER = 1
+# branch = 'feature/add-DML-scripts'
+# branch = quote(branch, safe='')
+PR_NUMBER = argv[0]
 READ_TOKEN = "XXX"
 headers={"accept": "application/vnd.github.v3", "Authorization": f"token {READ_TOKEN}"}
 
@@ -43,7 +39,7 @@ print(found)
 
 if not found:
     print("No need to run compare, No database scripts changed")
-    exit()
+    exit(0)
 
 else:
     for file in file_names:
@@ -75,10 +71,10 @@ for env in ENVs:
 
 for item in versions_local:
     if item in versions_main:
-        print("Version of " + item + " is already present in Main branch")
-        exit(1)
+        raise Exception(f"Version of {item} is already present in Main branch")
 
 print("Success")
+exit(0)
 #
 #
 # for env in ENVs:
