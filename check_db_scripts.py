@@ -19,9 +19,11 @@ repo = 'GitWorkflowTest'
 # branch = 'feature/add-DML-scripts'
 # branch = quote(branch, safe='')
 print(argv)
+if len(argv) < 2:
+    print("PR Number not sent to call")
+    exit(0)
 PR_NUMBER = argv[1]
 READ_TOKEN = os.environ["READ_TOKEN"]
-print(PR_NUMBER)
 headers={"accept": "application/vnd.github.v3", "Authorization": f"token {READ_TOKEN}"}
 
 files_changed_url = f"https://api.github.com/repos/vijethkash123/GitWorkflowTest/pulls/{PR_NUMBER}/files"
