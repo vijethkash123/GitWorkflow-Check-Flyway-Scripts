@@ -30,10 +30,12 @@ if response.status_code != 200:
     exit(1)
 
 changed_files_data = response.json()
-file_names = [file['filename'] for file in changed_files_data]
-# print("Changed Files:")
-# for file_name in file_names:
-#     print(file_name)
+print(changed_files_data)
+file_names = []
+for file in changed_files_data:
+    if file['status'] != 'removed':
+        file_names.append(file['filename'])
+
 
 found = any('database_scripts' in file_name for file_name in file_names)
 
