@@ -31,13 +31,13 @@ if response.status_code != 200:
 
 changed_files_data = response.json()
 file_names = [file['filename'] for file in changed_files_data]
-print("Changed Files:")
-for file_name in file_names:
-    print(file_name)
+# print("Changed Files:")
+# for file_name in file_names:
+#     print(file_name)
 
 found = any('database_scripts' in file_name for file_name in file_names)
 
-print("Database version conflict: "+ found)
+print("Database version conflict: "+ str(found))
 
 if not found:
     print("No need to run compare, No database scripts changed")
