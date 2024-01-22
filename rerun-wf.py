@@ -31,7 +31,7 @@ if response.status_code != 200:
     exit(1)
 else:
     run_data = response.json()
-    latest_run_id = run_data["workflow_runs"][0]["run_number"]
+    latest_run_id = run_data["workflow_runs"][0]["id"]
     print(f"Latest run ID: {latest_run_id}")
 
 print("Submitting rerun POST request")
