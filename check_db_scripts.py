@@ -31,13 +31,13 @@ if response.status_code != 200:
 
 changed_files_data = response.json()
 file_names = [file['filename'] for file in changed_files_data]
-print("Changed Files:")
-for file_name in file_names:
-    print(file_name)
+# print("Changed Files:")
+# for file_name in file_names:
+#     print(file_name)
 
 found = any('database_scripts' in file_name for file_name in file_names)
 
-print(found)
+print("Database version conflict: "+ str(found))
 
 if not found:
     print("No need to run compare, No database scripts changed")
@@ -68,9 +68,11 @@ for env in ENVs:
 
 for item in versions_local:
     if item in versions_main:
-        raise Exception(f"Version of {item} is already present in Main branch")
+        print("Version of " + item + " and maybe others already present in Main branch")
+        exit(1)
 
-print("Success")
+
+print("Success, no Conflicts in database_scripts")
 exit(0)
 
 
