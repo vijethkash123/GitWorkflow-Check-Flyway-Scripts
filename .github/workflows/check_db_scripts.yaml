@@ -32,6 +32,7 @@ jobs:
     - name: Check PR
       id: pr
       run: |
+        echo "pull_request_number=$(gh pr view --json number -q .number || echo "")" >> $GITHUB_OUTPUT
         echo "PR NUMBER " ${{ steps.pr.outputs.pull_request_number }}
         python check_db_scripts.py ${{ steps.pr.outputs.pull_request_number }}
       env:
@@ -59,4 +60,3 @@ jobs:
 #       - run: echo ${{ steps.pr.outputs.pull_request_number }}
 
 
-      # run: echo "pull_request_number=$(gh pr view --json number -q .number || echo "")" >> $GITHUB_OUTPUT
