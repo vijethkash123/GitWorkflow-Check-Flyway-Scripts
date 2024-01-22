@@ -28,13 +28,15 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r ./.github/workflows/requirements.txt
+    - name: Get Pull Request Number
+        id: pr
+        run: echo "pull_request_number=$(gh pr view --json number -q .number || echo "")" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.READ_TOKEN }}
 
     - name: Check PR
-      id: pr
-      run: |
-        echo "pull_request_number=$(gh pr view --json number -q .number || echo "")" >> $GITHUB_OUTPUT
-        echo "PR NUMBER " ${{ steps.pr.outputs.pull_request_number }}
-        python check_db_scripts.py ${{ steps.pr.outputs.pull_request_number }}
+      id: cpr
+      run: python check_db_scripts.py ${{ steps.pr.outputs.pull_request_number }}
       env:
         READ_TOKEN: ${{ secrets.READ_TOKEN }}
 
