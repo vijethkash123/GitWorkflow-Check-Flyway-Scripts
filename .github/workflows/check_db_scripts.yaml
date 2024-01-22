@@ -8,10 +8,22 @@ on:
     branches:
       - '**'
       - '!main'
+  pull_request:
+    types:
+      - opened
  
 permissions: read-all
  
 jobs:
+  Rerun-WF:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
+    steps:
+      - name: Rerun Workflow on Pull request
+        run: |
+          git commit --allow-empty -m "IGNORE: Trigger GitHub actions"
+          git push
+
   Version_Checks:
     runs-on: ubuntu-latest
     steps:
@@ -40,14 +52,6 @@ jobs:
       env:
         READ_TOKEN: ${{ secrets.READ_TOKEN }}
   
-  EchoPR:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-    steps:
-      - name: Rerun Workflow on Pull request
-        run: |
-          git commit --allow-empty -m "IGNORE: Trigger GitHub actions"
-          git push
 
 #Uncomment and add this here
 # name: Get PR Number on PUSH event
