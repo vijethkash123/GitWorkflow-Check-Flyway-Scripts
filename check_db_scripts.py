@@ -8,6 +8,7 @@ import requests
 READ_TOKEN = os.environ["READ_TOKEN"]
 
 
+
 versions_main = set()
 versions_local = set()
 ENVs = ['common', 'ci', 'prod', 'qa']
@@ -95,4 +96,3 @@ exit(0)
 # print(sorted(versions_local))
 #
 # # result = check_version(main_branch_version, local_branch_version)
-# # print(result)
