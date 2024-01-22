@@ -36,9 +36,6 @@ for file in changed_files_data:
     if file['status'] != 'removed':
         file_names.append(file['filename'])
 
-# print("Changed Files:")
-# for file_name in file_names:
-#     print(file_name)
 
 found = any('database_scripts' in file_name for file_name in file_names)
 
