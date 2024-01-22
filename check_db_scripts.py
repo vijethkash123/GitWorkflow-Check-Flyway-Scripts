@@ -33,7 +33,7 @@ changed_files_data = response.json()
 print(changed_files_data)
 file_names = []
 for file in changed_files_data:
-    if file['status'] == 'removed':
+    if file['status'] != 'removed':
         file_names.append(file['filename'])
 
 # print("Changed Files:")
