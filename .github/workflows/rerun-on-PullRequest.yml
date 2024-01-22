@@ -1,0 +1,14 @@
+name: PULL PR Runner
+ 
+on: pull_request
+ 
+permissions: read-all
+ 
+jobs:
+  RerunWF:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
+    steps:
+      - run: rerun-wf.py ${{ github.event.number }}
+        env:
+          READ_TOKEN: ${{ secrets.READ_TOKEN }}
