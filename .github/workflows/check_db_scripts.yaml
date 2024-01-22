@@ -3,15 +3,7 @@
  
 name: PR Runner
  
-on:
-  push:
-    branches:
-      - '**'
-      - '!main'
-  pull_request:
-    branches:
-      - '**'
-      - '!main'
+on: [push, pull_request]
  
 permissions: read-all
  
