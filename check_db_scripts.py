@@ -19,7 +19,7 @@ repo = 'GitWorkflowTest'
 # branch = 'feature/add-DML-scripts'
 # branch = quote(branch, safe='')
 print(argv)
-if not argv:
+if len(argv) < 2:
     print("PR Number not sent to call")
     exit(0)
 PR_NUMBER = argv[1]
