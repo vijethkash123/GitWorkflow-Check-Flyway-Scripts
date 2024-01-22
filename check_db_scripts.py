@@ -5,7 +5,7 @@ from sys import argv
 import requests
 
 
-READ_TOKEN = "XXXX"
+READ_TOKEN = os.environ["READ_TOKEN"]
 
 
 versions_main = set()

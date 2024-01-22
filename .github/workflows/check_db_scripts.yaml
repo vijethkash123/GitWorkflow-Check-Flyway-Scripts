@@ -33,7 +33,7 @@ jobs:
       id: pr
       run: echo "pull_request_number=$(gh pr view --json number -q .number || echo "")" >> $GITHUB_OUTPUT
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        READ_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - run: |
         echo "PR NUMBER " ${{ steps.pr.outputs.pull_request_number }}
         python check_db_scripts.py ${{ steps.pr.outputs.pull_request_number }}
