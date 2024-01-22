@@ -37,7 +37,7 @@ for file_name in file_names:
 
 found = any('database_scripts' in file_name for file_name in file_names)
 
-print(found)
+print("Database version conflict: "+ found)
 
 if not found:
     print("No need to run compare, No database scripts changed")
@@ -68,7 +68,8 @@ for env in ENVs:
 
 for item in versions_local:
     if item in versions_main:
-        raise Exception(f"Version of {item} is already present in Main branch")
+        print("Version of" + item + " and maybe others already present in Main branch")
+        raise Exception(f"Version is already present in Main branch")
 
 print("Success")
 exit(0)
