@@ -3,7 +3,11 @@
  
 name: PR Runner
  
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - '**'
+      - '!main'
  
 permissions: read-all
  
@@ -35,7 +39,15 @@ jobs:
       run: python check_db_scripts.py ${{ steps.pr.outputs.pull_request_number }}
       env:
         READ_TOKEN: ${{ secrets.READ_TOKEN }}
-
+  
+  EchoPR:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Rerun Workflow on Pull request
+        run: |
+          git commit --allow-empty -m "IGNORE: Trigger GitHub actions"
+          git push
 
 #Uncomment and add this here
 # name: Get PR Number on PUSH event
