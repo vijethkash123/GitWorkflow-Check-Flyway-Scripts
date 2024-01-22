@@ -9,7 +9,6 @@ on:
       - '**'
       - '!main'
  
-# Set workflow permissions for the generated GITHUB_TOKEN
 permissions: read-all
  
 jobs:
