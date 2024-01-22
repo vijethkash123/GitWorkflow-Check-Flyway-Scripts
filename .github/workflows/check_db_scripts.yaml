@@ -31,13 +31,12 @@ jobs:
 
     - name: Check PR
       id: pr
-      run: echo "pull_request_number=$(gh pr view --json number -q .number || echo "")" >> $GITHUB_OUTPUT
-      env:
-        READ_TOKEN: ${{ secrets.READ_TOKEN }}
-    - run: |
+      run: |
         echo "PR NUMBER " ${{ steps.pr.outputs.pull_request_number }}
         python check_db_scripts.py ${{ steps.pr.outputs.pull_request_number }}
-  
+      env:
+        READ_TOKEN: ${{ secrets.READ_TOKEN }}
+
 
 #Uncomment and add this here
 # name: Get PR Number on PUSH event
@@ -58,3 +57,6 @@ jobs:
 #         env:
 #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #       - run: echo ${{ steps.pr.outputs.pull_request_number }}
+
+
+      # run: echo "pull_request_number=$(gh pr view --json number -q .number || echo "")" >> $GITHUB_OUTPUT
