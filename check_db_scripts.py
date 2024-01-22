@@ -18,6 +18,7 @@ owner = 'vijethkash123'
 repo = 'GitWorkflowTest'
 # branch = 'feature/add-DML-scripts'
 # branch = quote(branch, safe='')
+print(argv)
 PR_NUMBER = argv[1]
 READ_TOKEN = os.environ["READ_TOKEN"]
 print(PR_NUMBER)
