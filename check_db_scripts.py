@@ -31,7 +31,11 @@ if response.status_code != 200:
 
 changed_files_data = response.json()
 print(changed_files_data)
-file_names = [file['filename'] for file in changed_files_data]
+file_names = []
+for file in changed_files_data:
+    if file['status'] == 'removed':
+        file_names.append(file['filename'])
+
 # print("Changed Files:")
 # for file_name in file_names:
 #     print(file_name)
