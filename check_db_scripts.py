@@ -42,7 +42,7 @@ for file in changed_files_data:
 
 found = any('database_scripts' in file_name for file_name in file_names)
 
-print("Database version conflict: "+ str(found))
+print("Database scripts changed: "+ str(found))
 
 if not found:
     print("No need to run compare, No database scripts changed")
