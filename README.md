@@ -3,6 +3,9 @@
 - Flyway requires users to bump up the DB scripts, when we use it to do incremental updates on DB tables.
 - If a user merges a PR with a script V2 to main, and another Dev tries to raise a PR with V2 script, the Github Workflow runner, gets into action, failing the build and stopping the user from merging the PR, hence later avoiding facing failures after the merge in the codepipeline.
 
+### Bonus 🍀
+Look at the `Pull Requests` section for Demo of this project.
+
 ### Tech used 🧑🏽‍💻
 - Python3
 - Github V3 APIs
